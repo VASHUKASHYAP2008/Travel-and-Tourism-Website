@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanderlore - Travel and Tourism</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="container nav">
+      <h2 class="logo">Wanderlore</h2>
+      <button id="menuBtn">Menu</button>
+      <ul id="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#attractions">Attractions</a></li>
+        <li><a href="#info">Travel Info</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Explore Incredible India</h1>
+      <p>Choose a destination, pick a package and start your journey.</p>
+      <select id="searchBox" onchange="searchDestination()">
+        <option value="all">All destinations</option>
+        <option value="Ladakh">Ladakh</option>
+        <option value="Goa">Goa</option>
+        <option value="Jaipur">Jaipur</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Andaman">Andaman</option>
+        <option value="Manali">Manali</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section id="destinations" class="container">
+    <h2>Popular Destinations</h2>
+    <div class="filters">
+      <button onclick="filterCards('all')">All</button>
+      <button onclick="filterCards('mountain')">Mountains</button>
+      <button onclick="filterCards('beach')">Beaches</button>
+      <button onclick="filterCards('heritage')">Heritage</button>
+      <button onclick="filterCards('nature')">Nature</button>
+    </div>
+
+    <div class="cards">
+      <div class="card" data-type="mountain" data-name="Ladakh">
+        <h3>Ladakh</h3>
+        <p>Mountain lakes, monasteries and high passes.</p>
+        <p><b>Best time:</b> May to September</p>
+      </div>
+      <div class="card" data-type="beach" data-name="Goa">
+        <h3>Goa</h3>
+        <p>Sandy beaches, old churches and nightlife.</p>
+        <p><b>Best time:</b> November to March</p>
+      </div>
+      <div class="card" data-type="heritage" data-name="Jaipur">
+        <h3>Jaipur</h3>
+        <p>The Pink City of forts and palaces.</p>
+        <p><b>Best time:</b> October to March</p>
+      </div>
+      <div class="card" data-type="nature" data-name="Kerala">
+        <h3>Kerala</h3>
+        <p>Backwaters, tea gardens and houseboats.</p>
+        <p><b>Best time:</b> September to March</p>
+      </div>
+      <div class="card" data-type="beach" data-name="Andaman">
+        <h3>Andaman Islands</h3>
+        <p>Clear water, coral reefs and snorkelling.</p>
+        <p><b>Best time:</b> November to May</p>
+      </div>
+      <div class="card" data-type="mountain" data-name="Manali">
+        <h3>Manali</h3>
+        <p>Snow peaks, rafting and pine forests.</p>
+        <p><b>Best time:</b> March to June</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="packages" class="light">
+    <div class="container">
+      <h2>Travel Packages</h2>
+      <p>Number of travellers:
+        <input type="number" id="travellers" value="2" min="1" max="20" oninput="updateTotals()">
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Ladakh Explorer</h3>
+          <p>5 days - flights, camping, guide</p>
+          <p>Price per person: Rs. <span class="price">32000</span></p>
+          <p class="total"><b>Total: Rs. <span class="totalAmount"></span></b></p>
+          <button onclick="bookNow('Ladakh')">Book Now</button>
+        </div>
+        <div class="card">
+          <h3>Goa Beach Break</h3>
+          <p>4 days - resort, scooter, cruise</p>
+          <p>Price per person: Rs. <span class="price">14500</span></p>
+          <p class="total"><b>Total: Rs. <span class="totalAmount"></span></b></p>
+          <button onclick="bookNow('Goa')">Book Now</button>
+        </div>
+        <div class="card">
+          <h3>Royal Rajasthan</h3>
+          <p>6 days - heritage hotels, car, tickets</p>
+          <p>Price per person: Rs. <span class="price">26000</span></p>
+          <p class="total"><b>Total: Rs. <span class="totalAmount"></span></b></p>
+          <button onclick="bookNow('Jaipur')">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATTRACTIONS -->
+  <section id="attractions" class="container">
+    <h2>Top Attractions</h2>
+    <ul class="list">
+      <li><b>Pangong Lake</b> (Ladakh) - a lake that changes colour through the day.</li>
+      <li><b>Amber Fort</b> (Jaipur) - a hilltop fort with grand courtyards.</li>
+      <li><b>Alleppey Backwaters</b> (Kerala) - houseboat rides through quiet canals.</li>
+      <li><b>Baga Beach</b> (Goa) - water sports and beach shacks.</li>
+      <li><b>Radhanagar Beach</b> (Andaman) - white sand and calm water.</li>
+    </ul>
+  </section>
+
+  <!-- TRAVEL INFO -->
+  <section id="info" class="light">
+    <div class="container">
+      <h2>Travel Information</h2>
+      <h3>Best time to visit</h3>
+      <p>October to March is good for most of India. Mountains are best from May to September.</p>
+      <h3>Visa</h3>
+      <p>Most foreign visitors need an e-Visa. Apply online at least two weeks before travel.</p>
+      <h3>What to pack</h3>
+      <p>Light clothes, a jacket for the mountains, sunscreen, a power bank and a water bottle.</p>
+      <h3>Getting around</h3>
+      <p>Book trains early, take flights for Ladakh and the islands, and use cabs within cities.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section id="contact" class="container">
+    <h2>Plan Your Trip</h2>
+    <form id="form" onsubmit="return checkForm()">
+      <label>Name</label>
+      <input type="text" id="name">
+      <p class="error" id="nameError"></p>
+
+      <label>Email</label>
+      <input type="text" id="email">
+      <p class="error" id="emailError"></p>
+
+      <label>Destination</label>
+      <select id="destination">
+        <option>Ladakh</option>
+        <option>Goa</option>
+        <option>Jaipur</option>
+        <option>Kerala</option>
+        <option>Andaman</option>
+        <option>Manali</option>
+      </select>
+
+      <label>Message</label>
+      <textarea id="message" rows="3"></textarea>
+
+      <button type="submit">Send Enquiry</button>
+      <p id="success"></p>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Wanderlore Travels</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
