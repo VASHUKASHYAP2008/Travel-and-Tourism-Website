@@ -1,18 +1,29 @@
 <!DOCTYPE html>
+<!-- Tells the browser this document is written in HTML5 -->
 <html lang="en">
+<!-- lang="en" sets the page language (helps screen readers and search engines) -->
 <head>
+  <!-- Supports all characters and symbols (UTF-8 encoding) -->
   <meta charset="UTF-8">
+  <!-- Makes the page responsive: width matches the device screen, no zoomed-out desktop view on phones -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Text shown on the browser tab -->
   <title>Wanderlore - Travel and Tourism</title>
+  <!-- Connects the external CSS file for styling -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- ===================== NAVBAR ===================== -->
+  <!-- header holds the logo and navigation menu; it stays at the top (sticky, see CSS) -->
   <header>
+    <!-- "container" centres the content, "nav" makes it a flex row (see CSS) -->
     <div class="container nav">
+      <!-- Website name / logo text -->
       <h2 class="logo">Wanderlore</h2>
+      <!-- Menu button: hidden on desktop, shown on mobile. JS toggles the menu when clicked -->
       <button id="menuBtn">Menu</button>
+      <!-- Navigation links. Each href="#id" jumps to the section with that id (single-page navigation) -->
       <ul id="menu">
         <li><a href="#home">Home</a></li>
         <li><a href="#destinations">Destinations</a></li>
@@ -24,13 +35,17 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- ===================== HERO ===================== -->
+  <!-- Large banner at the top with heading, tagline and a search dropdown -->
   <section id="home" class="hero">
     <div class="container">
       <h1>Explore Incredible India</h1>
       <p>Choose a destination, pick a package and start your journey.</p>
+      <!-- Dropdown search: onchange calls searchDestination() in script.js whenever the user picks an option -->
       <select id="searchBox" onchange="searchDestination()">
+        <!-- "all" shows every destination card -->
         <option value="all">All destinations</option>
+        <!-- These values must match the data-name attribute of the cards below -->
         <option value="Ladakh">Ladakh</option>
         <option value="Goa">Goa</option>
         <option value="Jaipur">Jaipur</option>
@@ -41,9 +56,11 @@
     </div>
   </section>
 
-  <!-- DESTINATIONS -->
+  <!-- ===================== DESTINATIONS ===================== -->
   <section id="destinations" class="container">
     <h2>Popular Destinations</h2>
+
+    <!-- Filter buttons: each calls filterCards() with a category name -->
     <div class="filters">
       <button onclick="filterCards('all')">All</button>
       <button onclick="filterCards('mountain')">Mountains</button>
@@ -52,6 +69,8 @@
       <button onclick="filterCards('nature')">Nature</button>
     </div>
 
+    <!-- Grid of destination cards (3 columns on desktop, see CSS) -->
+    <!-- data-type = category used by the filter buttons; data-name = used by the hero dropdown search -->
     <div class="cards">
       <div class="card" data-type="mountain" data-name="Ladakh">
         <h3>Ladakh</h3>
@@ -86,20 +105,24 @@
     </div>
   </section>
 
-  <!-- PACKAGES -->
+  <!-- ===================== PACKAGES ===================== -->
+  <!-- "light" class gives this section a soft gradient background -->
   <section id="packages" class="light">
     <div class="container">
       <h2>Travel Packages</h2>
+      <!-- Number of travellers: oninput calls updateTotals() on every change so totals update instantly -->
       <p>Number of travellers:
         <input type="number" id="travellers" value="2" min="1" max="20" oninput="updateTotals()">
       </p>
 
       <div class="cards">
+        <!-- Each package: .price holds the fixed price per person, .totalAmount is filled by JavaScript -->
         <div class="card">
           <h3>Ladakh Explorer</h3>
           <p>5 days - flights, camping, guide</p>
           <p>Price per person: Rs. <span class="price">32000</span></p>
           <p class="total"><b>Total: Rs. <span class="totalAmount"></span></b></p>
+          <!-- bookNow() pre-selects this destination in the enquiry form and scrolls to it -->
           <button onclick="bookNow('Ladakh')">Book Now</button>
         </div>
         <div class="card">
@@ -120,9 +143,10 @@
     </div>
   </section>
 
-  <!-- ATTRACTIONS -->
+  <!-- ===================== ATTRACTIONS ===================== -->
   <section id="attractions" class="container">
     <h2>Top Attractions</h2>
+    <!-- Unordered list (bullet points) of famous places -->
     <ul class="list">
       <li><b>Pangong Lake</b> (Ladakh) - a lake that changes colour through the day.</li>
       <li><b>Amber Fort</b> (Jaipur) - a hilltop fort with grand courtyards.</li>
@@ -132,7 +156,7 @@
     </ul>
   </section>
 
-  <!-- TRAVEL INFO -->
+  <!-- ===================== TRAVEL INFO ===================== -->
   <section id="info" class="light">
     <div class="container">
       <h2>Travel Information</h2>
@@ -147,19 +171,23 @@
     </div>
   </section>
 
-  <!-- CONTACT FORM -->
+  <!-- ===================== CONTACT FORM ===================== -->
   <section id="contact" class="container">
     <h2>Plan Your Trip</h2>
+    <!-- onsubmit runs checkForm(); the form submits only if it returns true (here it always returns false, so no page reload) -->
     <form id="form" onsubmit="return checkForm()">
       <label>Name</label>
       <input type="text" id="name">
+      <!-- Empty paragraph where JS shows the name error message -->
       <p class="error" id="nameError"></p>
 
       <label>Email</label>
       <input type="text" id="email">
+      <!-- Empty paragraph where JS shows the email error message -->
       <p class="error" id="emailError"></p>
 
       <label>Destination</label>
+      <!-- bookNow() changes this dropdown's value automatically -->
       <select id="destination">
         <option>Ladakh</option>
         <option>Goa</option>
@@ -172,15 +200,20 @@
       <label>Message</label>
       <textarea id="message" rows="3"></textarea>
 
+      <!-- type="submit" triggers the form's onsubmit event -->
       <button type="submit">Send Enquiry</button>
+      <!-- Empty paragraph where JS shows the thank-you message -->
       <p id="success"></p>
     </form>
   </section>
 
+  <!-- ===================== FOOTER ===================== -->
   <footer>
+    <!-- &copy; is the HTML code for the copyright symbol -->
     <p>&copy; 2026 Wanderlore Travels</p>
   </footer>
 
+  <!-- JavaScript file is linked at the END of body so all HTML elements exist before the script runs -->
   <script src="script.js"></script>
 </body>
 </html>
